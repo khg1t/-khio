@@ -5,5 +5,5 @@ import { useTheme } from 'common/theme/Theme.store';
 export const App: FunctionComponent = () => {
     const [{ theme }] = useTheme();
 
-    return <div className={`khio-${theme}`}>khio</div>;
+    return <div className={`khio-${theme}`}></div>;
 };
