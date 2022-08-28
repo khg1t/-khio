@@ -1,10 +1,4 @@
-import React, {
-    useContext,
-    useReducer,
-    Dispatch,
-    createContext,
-    ReactNode,
-} from 'react';
+import React, { useContext, useReducer, Dispatch, createContext, ReactNode } from 'react';
 
 import { Theme } from 'common/theme/Theme.types';
 
@@ -26,14 +20,9 @@ interface ThemeProviderProps {
 }
 
 const ThemeStateContext = createContext<ThemeContainer | undefined>(undefined);
-const ThemeDispatchContext = createContext<Dispatch<ThemeAction> | undefined>(
-    undefined
-);
+const ThemeDispatchContext = createContext<Dispatch<ThemeAction> | undefined>(undefined);
 
-const themeReducer = (
-    themeContainer: ThemeContainer,
-    action: ThemeAction
-): ThemeContainer => {
+const themeReducer = (themeContainer: ThemeContainer, action: ThemeAction): ThemeContainer => {
     switch (action.type) {
         case ThemeActionType.SetTheme: {
             if (!action.theme) {
@@ -48,22 +37,18 @@ const themeReducer = (
     }
 };
 
-export const ThemeProvider = ({
-    children,
-}: ThemeProviderProps): JSX.Element => {
+export const ThemeProvider = ({ children }: ThemeProviderProps): JSX.Element => {
     const key = 'khio-theme';
 
     const [state, dispatch] = useReducer(themeReducer, {
         theme: localStorage.getItem(key)
             ? JSON.parse(localStorage.getItem(key)!) // eslint-disable-line @typescript-eslint/no-non-null-assertion
-            : Theme.Light,
+            : Theme.Dark,
     });
 
     return (
         <ThemeStateContext.Provider value={state}>
-            <ThemeDispatchContext.Provider value={dispatch}>
-                {children}
-            </ThemeDispatchContext.Provider>
+            <ThemeDispatchContext.Provider value={dispatch}>{children}</ThemeDispatchContext.Provider>
         </ThemeStateContext.Provider>
     );
 };

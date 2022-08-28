@@ -1,0 +1,14 @@
+.khio-theme-dark,
+.khio-theme-light {
+    height: 100vh;
+}
+
+.khio-theme-light {
+    color: $font-color-dark;
+    background: $background-color-light;
+}
+
+.khio-theme-dark {
+    color: $font-color-light;
+    background: $background-color-dark;
+}
